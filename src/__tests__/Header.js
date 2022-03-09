@@ -3,23 +3,15 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../app';
+import { createMemoryHistory } from "history";
+
 
 const setup = (initialPath = '/') => {
 
-  let history;
+  const history = createMemoryHistory();
   render(
-    <MemoryRouter initialEntries={[initialPath]}>
+    <MemoryRouter navigator={history} initialEntries={[initialPath]}>
       <App />
-      <Routes>
-      <Route
-        path="*"
-        render={(props) => {
-            console.log(props);
-          history = props.history;
-          return null;
-        }}
-      />
-      </Routes>
     </MemoryRouter>,
   );
   return { history };
