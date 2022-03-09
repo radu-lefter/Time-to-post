@@ -6,9 +6,9 @@ import { GlobalStyle, theme } from '../style';
 import * as S from './App.style';
 import Header from '../common/header';
 import Footer from '../common/footer';
-import Home from './Home';
-import Search from './Search';
-import Terms from './Terms';
+import Home from '../pages/home/Home';
+import Search from '../pages/Search';
+import Terms from '../pages/Terms';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
             Search
           </Route>
           <Route path="/terms" element={<Terms />}>
-            Home
+            Terms
           </Route>
           <Route path="*">404 - Not Found</Route>
         </Routes>

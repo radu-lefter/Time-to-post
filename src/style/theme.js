@@ -5,11 +5,13 @@ const theme = {
     midDark: '#636363',
     midLight: '#d5d5d5',
     light: '#ffffff',
+    primary: '#fdb755',
   },
 
   size: {
     headerHeight: '100px',
     footerHeight: '100px',
+    large: '38px',
   },
 
   font: {
@@ -23,6 +25,10 @@ const theme = {
     },
     lineHeight: {
       default: 1.69,
+    },
+    letterSpacing: {
+      default: '0.03px',
+      heading: 'normal',
     },
   },
 };
