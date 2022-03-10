@@ -1,21 +1,15 @@
 import React from 'react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../app';
-import { createMemoryHistory } from "history";
 
 
-const setup = (initialPath = '/') => {
-
-  const history = createMemoryHistory();
-  render(
-    <MemoryRouter navigator={history} initialEntries={[initialPath]}>
-      <App />
-    </MemoryRouter>,
-  );
-  return { history };
-};
+const setup = (initialPath = '/') => render(
+  <MemoryRouter initialEntries={[initialPath]}>
+    <App />
+  </MemoryRouter>,
+);
 
 test('navigates to home page when logo is clicked', () => {
   setup('/search/javascript');
@@ -23,17 +17,16 @@ test('navigates to home page when logo is clicked', () => {
   const logoLink = screen.getByRole('link', { name: /logo\.svg/i });
   userEvent.click(logoLink);
 
-  expect(screen.getByText(/home page/i)).toBeInTheDocument();
+  expect(screen.getByText(/social media/i)).toBeInTheDocument();
 });
 
 test('navigates to search page when search link is clicked', () => {
-  const { history } = setup();
+  setup();
 
   const searchLink = screen.getByRole('link', { name: /search/i });
   userEvent.click(searchLink);
 
   expect(screen.getByText(/search page/i)).toBeInTheDocument();
-  //expect(history.location.pathname).toEqual('/search/javascript');
 });
 
 test.each`
@@ -41,11 +34,10 @@ test.each`
  ${'About'} | ${'#about'}
  ${'How it works'} | ${'#how-it-works'}
 `('navigates to "$link" section when "$link" link is clicked', ({ link, hash }) => {
-  const { history } = setup('/search/javascript');
+ setup('/search/javascript');
 
   const hashLink = screen.getByRole('link', { name: link });
   userEvent.click(hashLink);
 
-  expect(screen.getByText(/home page/i)).toBeInTheDocument();
-  //expect(history.location.hash).toEqual(hash);
+  expect(screen.getByText(/social media/i)).toBeInTheDocument();
 });

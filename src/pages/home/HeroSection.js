@@ -5,13 +5,13 @@ import { defaultSubreddit } from '../../config';
 
 function HeroSection() {
   return (
-    <S.Article>
+    <S.Section>
       <S.Headline>
-        No reactions to your reddit posts?
+        No reactions to your social media posts?
       </S.Headline>
 
       <S.Subline>
-        Great timing, great results! Find the best time to post on your subreddit.
+        Great timing, great results! Find the best time to post on your favourite social media channel.
       </S.Subline>
 
       <S.Button to={`/search/${defaultSubreddit}`}>
@@ -30,7 +30,7 @@ function HeroSection() {
           alt="Screenshot of heatmap"
         />
       </Link>
-    </S.Article>
+    </S.Section>
   );
 }
 
