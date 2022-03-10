@@ -5,7 +5,7 @@ import { defaultSubreddit } from '../../config';
 
 function HeroSection() {
   return (
-    <S.Section>
+    <S.Article>
       <S.Headline>
         No reactions to your social media posts?
       </S.Headline>
@@ -30,7 +30,7 @@ function HeroSection() {
           alt="Screenshot of heatmap"
         />
       </Link>
-    </S.Section>
+    </S.Article>
   );
 }
 
