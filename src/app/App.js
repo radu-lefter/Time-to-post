@@ -7,7 +7,7 @@ import * as S from './App.style';
 import Header from '../common/header';
 import Footer from '../common/footer';
 import Home from '../pages/home/Home';
-import Search from '../pages/Search';
+import Search from '../pages/search/Search';
 import Terms from '../pages/Terms';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />}>
             Home
           </Route>
-          <Route path="/search/javascript" element={<Search />}>
+          <Route path="/search/:subreddit" element={<Search />}>
             Search
           </Route>
           <Route path="/terms" element={<Terms />}>
