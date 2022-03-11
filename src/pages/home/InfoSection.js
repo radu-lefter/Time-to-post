@@ -4,7 +4,7 @@ import * as S from './InfoSection.style';
 
 function InfoSection() {
   return (
-    <S.Section>
+    <S.Container as="section">
       <Info id="how-it-works" headline="How it works">
         • We find the 500 top posts from the past year for a subreddit.
         <br />
@@ -24,7 +24,7 @@ function InfoSection() {
         {' '}
         <a href="https://profy.dev/employers">Click here for more information.</a>
       </Info>
-    </S.Section>
+    </S.Container>
   );
 }
 

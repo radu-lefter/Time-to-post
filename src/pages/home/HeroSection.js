@@ -14,7 +14,8 @@ function HeroSection() {
         Great timing, great results! Find the best time to post on your favourite social media channel.
       </S.Subline>
 
-      <S.Button to={`/search/${defaultSubreddit}`}>
+      
+      <S.Button as={Link} to={`/search/${defaultSubreddit}`}>
         Show me the best time
       </S.Button>
 
