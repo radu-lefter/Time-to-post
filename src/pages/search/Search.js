@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './SearchForm';
+import Heatmap from './Heatmap';
 import * as S from './Search.style';
 
 function SearchPage() {
@@ -10,6 +11,7 @@ function SearchPage() {
       </S.Headline>
 
       <SearchForm />
+      <Heatmap />
     </S.Container>
   );
 }
