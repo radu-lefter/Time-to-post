@@ -31,7 +31,7 @@ test('navigates to home page when logo is clicked', () => {
 
   userEvent.click(logoLink);
 
-  expect(screen.getByText(/social media/i)).toBeInTheDocument();
+  expect(screen.getByText(/No reactions/i)).toBeInTheDocument();
 });
 
 test('navigates to terms page when terms link is clicked', () => {

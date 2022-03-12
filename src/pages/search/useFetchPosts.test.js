@@ -1,20 +1,30 @@
 import { renderHook } from '@testing-library/react-hooks';
 import useFetchPosts from './useFetchPosts';
 
-// test('loads 500 top posts from the Reddit API', async () => {
-//   const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('500-posts'));
+const getNumPosts = (nestedPostsArray) => nestedPostsArray.reduce(
+  (numTotal, postsPerDay) => postsPerDay.reduce(
+    (numPerDay, postsPerHour) => numPerDay + postsPerHour, numTotal,
+  ),
+  0,
+);
 
-//   expect(result.current.isLoading).toBe(true);
-//   expect(result.current.posts).toEqual([]);
 
-//   await waitForNextUpdate();
+test('loads 500 top posts from the Reddit API', async () => {
+  const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('500-posts'));
 
-//   expect(result.current.isLoading).toBe(false);
-//   expect(result.current.posts.length).toEqual(500);
+  expect(result.current.isLoading).toBe(true);
+  expect(result.current.postsPerDay).toEqual([]);
 
-//   const postTitles = result.current.posts.map(({ data }) => data.title);
-//   expect(postTitles).toMatchSnapshot();
-// });
+  await waitForNextUpdate();
+
+  expect(result.current.isLoading).toBe(false);
+  expect(getNumPosts(result.current.postsPerDay)).toEqual(500);
+  expect(result.current.postsPerDay).toMatchSnapshot();
+
+
+  const postTitles = result.current.posts.map(({ data }) => data.title);
+  expect(postTitles).toMatchSnapshot();
+});
 
 // test('stops loading when less than 500 posts are available', async () => {
 //   const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('less-than-500-posts'));

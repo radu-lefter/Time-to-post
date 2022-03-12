@@ -1,33 +1,48 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import useFetchPosts from './useFetchPosts';
+import {
+  arrayOf,
+  func,
+  number,
+  shape,
+} from 'prop-types';
+import HeatmapHeaderRow from './HeatmapHeaderRow';
+import HeatmapRow from './HeatmapRow';
 import * as S from './Heatmap.style';
 
-function Heatmap() {
-  const { subreddit } = useParams();
-  const { isLoading, hasError, posts } = useFetchPosts(subreddit);
-
-  if (isLoading) {
-    return (
-      <S.LoadingContainer>
-        <S.LoadingSpinner />
-      </S.LoadingContainer>
-    );
-  }
-
-  if (hasError) {
-    return (
-      <S.ErrorContainer>
-        Something went wrong. Please check the subreddit you entered and try again.
-      </S.ErrorContainer>
-    );
-  }
-
+function Heatmap({ postsPerDay, onClickHour, selectedDayAndHour }) {
   return (
-    <div>
-      {posts.length}
-    </div>
+    <>
+      <S.Container data-testid="heatmap">
+        <HeatmapHeaderRow />
+
+        {postsPerDay.map((postsPerHour, day) => (
+          <HeatmapRow
+            // eslint-disable-next-line react/no-array-index-key
+            key={day}
+            day={day}
+            postsPerHour={postsPerHour}
+            onClickHour={onClickHour}
+            selectedHour={selectedDayAndHour.day === day ? selectedDayAndHour.hour : null}
+          />
+        ))}
+      </S.Container>
+
+      <S.TimezoneWrapper>
+        All times are shown in your timezone:
+        {' '}
+        <S.Timezone>{Intl.DateTimeFormat().resolvedOptions().timeZone}</S.Timezone>
+      </S.TimezoneWrapper>
+    </>
   );
 }
+
+Heatmap.propTypes = {
+  postsPerDay: arrayOf(arrayOf(number)).isRequired,
+  onClickHour: func.isRequired,
+  selectedDayAndHour: shape({
+    day: number,
+    hour: number,
+  }).isRequired,
+};
 
 export default Heatmap;

@@ -20,7 +20,7 @@ describe('Hero section', () => {
     });
     userEvent.click(ctaButton);
 
-    expect(screen.getByText(/search page/i)).toBeInTheDocument();
+    expect(screen.getByText(/Find the best time/i)).toBeInTheDocument();
   });
 
   test('navigates to search page when heatmap image is clicked', () => {
@@ -29,7 +29,7 @@ describe('Hero section', () => {
     const heatmapImage = screen.getByAltText(/screenshot of heatmap/i);
     userEvent.click(heatmapImage);
 
-    expect(screen.getByText(/search page/i)).toBeInTheDocument();
+    expect(screen.getByText(/Find the best time/i)).toBeInTheDocument();
   });
 });
 

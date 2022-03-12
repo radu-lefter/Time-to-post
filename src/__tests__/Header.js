@@ -17,7 +17,7 @@ test('navigates to home page when logo is clicked', () => {
   const logoLink = screen.getByRole('link', { name: /logo\.svg/i });
   userEvent.click(logoLink);
 
-  expect(screen.getByText(/social media/i)).toBeInTheDocument();
+  expect(screen.getByText(/No reactions/i)).toBeInTheDocument();
 });
 
 test('navigates to search page when search link is clicked', () => {
@@ -26,7 +26,7 @@ test('navigates to search page when search link is clicked', () => {
   const searchLink = screen.getByRole('link', { name: /search/i });
   userEvent.click(searchLink);
 
-  expect(screen.getByText(/search page/i)).toBeInTheDocument();
+  expect(screen.getByText(/Find the best time/i)).toBeInTheDocument();
 });
 
 test.each`
@@ -39,5 +39,5 @@ test.each`
   const hashLink = screen.getByRole('link', { name: link });
   userEvent.click(hashLink);
 
-  expect(screen.getByText(/social media/i)).toBeInTheDocument();
+  expect(screen.getByText(/No reactions/i)).toBeInTheDocument();
 });
