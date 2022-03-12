@@ -2,7 +2,7 @@ import React from 'react';
 import FormSection from './FormSection';
 import HeatmapSection from './HeatmapSection';
 
-function SearchPage() {
+function Search() {
   return (
     <>
       <FormSection />
@@ -11,4 +11,4 @@ function SearchPage() {
   );
 }
 
-export default SearchPage;
+export default Search;

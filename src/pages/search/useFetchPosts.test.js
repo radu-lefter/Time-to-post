@@ -8,32 +8,27 @@ const getNumPosts = (nestedPostsArray) => nestedPostsArray.reduce(
   0,
 );
 
-
 test('loads 500 top posts from the Reddit API', async () => {
   const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('500-posts'));
 
   expect(result.current.isLoading).toBe(true);
   expect(result.current.postsPerDay).toEqual([]);
 
-  await waitForNextUpdate();
+  await waitForNextUpdate({ timeout: 10000 });
 
   expect(result.current.isLoading).toBe(false);
   expect(getNumPosts(result.current.postsPerDay)).toEqual(500);
   expect(result.current.postsPerDay).toMatchSnapshot();
-
-
-  const postTitles = result.current.posts.map(({ data }) => data.title);
-  expect(postTitles).toMatchSnapshot();
 });
 
-// test('stops loading when less than 500 posts are available', async () => {
-//   const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('less-than-500-posts'));
+test('stops loading when less than 500 posts are available', async () => {
+  const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('less-than-500-posts'));
 
-//   await waitForNextUpdate();
+  await waitForNextUpdate();
 
-//   expect(result.current.isLoading).toBe(false);
-//   expect(result.current.posts.length).toEqual(270);
-// });
+  expect(result.current.isLoading).toBe(false);
+  expect(getNumPosts(result.current.postsPerDay)).toEqual(270);
+});
 
 test('returns error when a request fails', async () => {
   const { result, waitForNextUpdate } = renderHook(() => useFetchPosts('failing-request'));
