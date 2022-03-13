@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetchPosts from './useFetchPosts';
 import Heatmap from './Heatmap';
+import PostsTable from './PostsTable';
 import * as S from './HeatmapSection.style';
 
 function HeatmapSection() {
@@ -25,6 +26,10 @@ function HeatmapSection() {
     );
   }
 
+  const { day, hour } = selectedDayAndHour;
+  const selectedPosts = postsPerDay[day] && postsPerDay[day][hour];
+  const showPostsTable = selectedPosts && selectedPosts.length > 0;
+
   return (
     <S.Container as="section">
       <Heatmap
@@ -32,6 +37,14 @@ function HeatmapSection() {
         selectedDayAndHour={selectedDayAndHour}
         onClickHour={setSelectedDayAndHour}
       />
+
+      {
+        showPostsTable && (
+          <PostsTable
+            posts={selectedPosts}
+          />
+        )
+      }
     </S.Container>
   );
 }
