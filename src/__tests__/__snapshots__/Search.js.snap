@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`posts table shows posts ordered by time according to cell that is clicked 1`] = `
+Array [
+  Object {
+    "author": "trekhleb",
+    "authorHref": "https://reddit.com/u/trekhleb",
+    "href": "https://reddit.com/r/javascript/comments/ljl416/nanoneuron_7_simple_js_functions_that_explain_how/",
+    "numComments": "14",
+    "score": "291",
+    "time": "9:03 am",
+    "title": "NanoNeuron - 7 simple JS functions that explain how machines learn",
+  },
+  Object {
+    "author": "hanifbbz",
+    "authorHref": "https://reddit.com/u/hanifbbz",
+    "href": "https://reddit.com/r/javascript/comments/ij9gxd/til_javascript_is_a_trademark_of_oracle/",
+    "numComments": "114",
+    "score": "461",
+    "time": "9:26 am",
+    "title": "TIL, \\"JavaScript\\" is a trademark of Oracle Corporation in the United States",
+  },
+  Object {
+    "author": "miortiq",
+    "authorHref": "https://reddit.com/u/miortiq",
+    "href": "https://reddit.com/r/javascript/comments/jujhlf/askjs_how_to_write_a_clean_code/",
+    "numComments": "62",
+    "score": "276",
+    "time": "9:44 am",
+    "title": "[AskJS] How to write a clean code",
+  },
+  Object {
+    "author": "Soupaul",
+    "authorHref": "https://reddit.com/u/Soupaul",
+    "href": "https://reddit.com/r/javascript/comments/iniuit/learn_the_basics_of_vanilla_js_by_building_a/",
+    "numComments": "16",
+    "score": "319",
+    "time": "9:57 am",
+    "title": "Learn the basics of Vanilla JS by building a Snake Game",
+  },
+]
+`;

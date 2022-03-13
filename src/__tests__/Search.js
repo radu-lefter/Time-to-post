@@ -55,3 +55,49 @@ test('input value changes to default subreddit when search link in header is cli
 
   expect(searchInput.value).toBe(defaultSubreddit);
 });
+
+async function clickFirstCellWithValue(value) {
+  const heatmap = await screen.findByTestId('heatmap');
+  const cell = within(heatmap).getAllByText(value)[0];
+  userEvent.click(cell);
+}
+
+describe('posts table', () => {
+  
+
+  test('is not visible when cell with no posts is clicked', async () => {
+    setup('/search/reactjs');
+    await clickFirstCellWithValue('0');
+
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+  });
+
+  test('shows posts ordered by time according to cell that is clicked', async () => {
+    setup('/search/reactjs');
+    await clickFirstCellWithValue('4');
+
+    const table = screen.getByRole('table');
+    const tableRows = within(table)
+      .getAllByRole('row')
+      .slice(1);
+
+    const tableContent = tableRows.map((row) => {
+      const cells = within(row).getAllByRole('cell');
+      const titleLink = within(cells[0]).getByRole('link');
+      const authorLink = within(cells[4]).getByRole('link');
+      return {
+        title: titleLink.innerHTML,
+        href: titleLink.href,
+        time: cells[1].innerHTML,
+        score: cells[2].innerHTML,
+        numComments: cells[3].innerHTML,
+        author: authorLink.innerHTML,
+        authorHref: authorLink.href,
+      };
+    });
+
+    expect(tableContent).toMatchSnapshot();
+  });
+
+  
+});
